@@ -1,0 +1,32 @@
+{
+  "name": "feishu-coding-agent",
+  "version": "0.1.0",
+  "description": "飞书远程驱动本机 Cursor / Kiro（可扩展 Claude Code）的多引擎宿主",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx watch src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "express": "^4.22.2",
+    "feishu-agent-bridge": "^1.2.6"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.25",
+    "@types/node": "^22.20.1",
+    "tsx": "^4.23.11",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yucheng1207/feishu-coding-agent"
+  },
+  "license": "MIT"
+}
