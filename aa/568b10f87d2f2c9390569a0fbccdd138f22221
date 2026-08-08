@@ -1,0 +1,24 @@
+AGENTS.md
+  s_249b34b1d8f7cb::t_aaeb1f129cd75d 1-62
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.39-trip",
+  "base_commit_sha": "aa568b10f87d2f2c9390569a0fbccdd138f22221",
+  "prompts": {},
+  "humans": {
+    "h_2ceb23ea745330": {
+      "author": "ychengzhang <ychengzhang@trip.com>"
+    }
+  },
+  "sessions": {
+    "s_249b34b1d8f7cb": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "cf5f4569-a6d9-4996-86b1-912ebecd1fb8",
+        "model": "default"
+      },
+      "human_author": "ychengzhang <ychengzhang@trip.com>"
+    }
+  }
+}
