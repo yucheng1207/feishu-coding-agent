@@ -6,10 +6,11 @@ import type { CodingEngine, PromptOptions, PromptResult } from "./types.js"
 const execFileAsync = promisify(execFile)
 
 function kiroEnv(cfg: AppConfig): NodeJS.ProcessEnv {
-  return {
-    ...process.env,
-    KIRO_API_KEY: cfg.kiroApiKey || process.env.KIRO_API_KEY || "",
+  const env: NodeJS.ProcessEnv = { ...process.env }
+  if (cfg.kiroApiKey) {
+    env.KIRO_API_KEY = cfg.kiroApiKey
   }
+  return env
 }
 
 interface KiroSessionRow {
@@ -66,14 +67,13 @@ export function createKiroEngine(cfg: AppConfig): CodingEngine {
   return {
     name: "kiro",
     async prompt(text, opts: PromptOptions): Promise<PromptResult> {
-      if (!cfg.kiroApiKey) {
-        throw new Error("未配置 KIRO_API_KEY")
-      }
-
       const args = ["chat", "--no-interactive"]
       const sessionId = (opts.sessionId || "").trim()
       if (sessionId) {
         args.push("--resume-id", sessionId)
+      }
+      if (cfg.kiroModel) {
+        args.push("--model", cfg.kiroModel)
       }
 
       if (opts.writeMode) {

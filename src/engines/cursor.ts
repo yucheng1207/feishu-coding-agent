@@ -6,9 +6,9 @@ import type { CodingEngine, PromptOptions, PromptResult } from "./types.js"
 const execFileAsync = promisify(execFile)
 
 function cursorEnv(cfg: AppConfig): NodeJS.ProcessEnv {
-  const env: NodeJS.ProcessEnv = {
-    ...process.env,
-    CURSOR_API_KEY: cfg.cursorApiKey || process.env.CURSOR_API_KEY || "",
+  const env: NodeJS.ProcessEnv = { ...process.env }
+  if (cfg.cursorApiKey) {
+    env.CURSOR_API_KEY = cfg.cursorApiKey
   }
   const https = env.HTTPS_PROXY || ""
   if (!env.ALL_PROXY && https) env.ALL_PROXY = https
@@ -37,24 +37,25 @@ function extractSessionIdFromJson(stdout: string): string | undefined {
       if (typeof v === "string" && v.trim()) return v.trim()
     }
   } catch {
-    // not a single json object — ignore
+    // ignore
   }
   return undefined
 }
 
+/**
+ * Cursor：默认 Agent 模式（与 IDE Agent 一致），不使用 --mode ask。
+ * writeMode 时加 --force，否则只提出修改不落盘。
+ */
 export function createCursorEngine(cfg: AppConfig): CodingEngine {
   return {
     name: "cursor",
     async prompt(text, opts: PromptOptions): Promise<PromptResult> {
-      if (!cfg.cursorApiKey) {
-        throw new Error("未配置 CURSOR_API_KEY")
-      }
-
       let sessionId = (opts.sessionId || "").trim()
       if (!sessionId) {
         sessionId = await createChatId(cfg, opts.cwd)
       }
 
+      // 默认就是 agent；不要加 --mode ask
       const args = [
         "-p",
         "--trust",
@@ -63,10 +64,11 @@ export function createCursorEngine(cfg: AppConfig): CodingEngine {
         "--output-format",
         "text",
       ]
+      if (cfg.cursorModel) {
+        args.push("--model", cfg.cursorModel)
+      }
       if (opts.writeMode) {
         args.push("--force")
-      } else {
-        args.push("--mode", "ask")
       }
       args.push(text)
 
