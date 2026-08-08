@@ -40,10 +40,12 @@ export interface AppConfig {
   webhookPath: string
   cursorApiKey: string
   kiroApiKey: string
-  /** Cursor CLI --model；空则用账号/CLI 默认（对齐 IDE 当前默认） */
+  /** Cursor CLI --model；默认 auto（对齐 IDE Agent + Auto） */
   cursorModel: string
-  /** Kiro CLI --model，默认 claude-opus-5 */
+  /** Kiro CLI --model，默认 claude-opus-5（对齐 IDE） */
   kiroModel: string
+  /** Kiro --effort，默认 high（对齐 IDE High） */
+  kiroEffort: string
   defaultEngine: EngineName
   defaultCwd: string
   defaultWriteMode: boolean
@@ -81,8 +83,9 @@ export function loadConfig(): AppConfig {
     webhookPath: process.env.WEBHOOK_PATH || "/webhook/feishu",
     cursorApiKey: process.env.CURSOR_API_KEY || "",
     kiroApiKey: process.env.KIRO_API_KEY || "",
-    cursorModel: (process.env.CURSOR_MODEL || "").trim(),
+    cursorModel: (process.env.CURSOR_MODEL || "auto").trim(),
     kiroModel: (process.env.KIRO_MODEL || "claude-opus-5").trim(),
+    kiroEffort: (process.env.KIRO_EFFORT || "high").trim(),
     defaultEngine: parseEngine(process.env.DEFAULT_ENGINE),
     defaultCwd,
     defaultWriteMode: envBool("DEFAULT_WRITE_MODE", false),

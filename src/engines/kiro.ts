@@ -75,8 +75,12 @@ export function createKiroEngine(cfg: AppConfig): CodingEngine {
       if (cfg.kiroModel) {
         args.push("--model", cfg.kiroModel)
       }
+      if (cfg.kiroEffort) {
+        args.push("--effort", cfg.kiroEffort)
+      }
 
       if (opts.writeMode) {
+        // 接近 IDE Autopilot：自动批准工具并允许改文件
         args.push("--trust-all-tools")
       } else if (cfg.kiroTrustTools) {
         // 只读场景尽量收紧；仍允许配置覆盖
