@@ -1,0 +1,26 @@
+src/config.ts
+  s_249b34b1d8f7cb::t_627886eb9aa8bd 43,45,47-48
+  s_249b34b1d8f7cb::t_a073ec6924c189 86,88
+src/engines/kiro.ts
+  s_249b34b1d8f7cb::t_eaa54139a4aae4 78-80,83
+src/index.ts
+  s_249b34b1d8f7cb::t_bb5e0c297fb4b6 22,24-25
+.env.example
+  s_249b34b1d8f7cb::t_208547b33c2789 13-14,18,20,22,24,30
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.39-trip",
+  "base_commit_sha": "d2ea48e18c0d87a623bf4d680144ec5f8e047676",
+  "prompts": {},
+  "sessions": {
+    "s_249b34b1d8f7cb": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "cf5f4569-a6d9-4996-86b1-912ebecd1fb8",
+        "model": "default"
+      },
+      "human_author": "ychengzhang <ychengzhang@trip.com>"
+    }
+  }
+}
