@@ -88,12 +88,19 @@ export function createCursorEngine(cfg: AppConfig): CodingEngine {
       } catch (err: unknown) {
         const e = err as {
           killed?: boolean
+          code?: string
           message?: string
           stdout?: string
           stderr?: string
         }
         if (e.killed) {
           throw new Error(`Cursor 执行超时（${opts.timeoutMs / 1000}s）`)
+        }
+        if (e.code === "ENOENT" || /ENOENT/i.test(e.message || "")) {
+          throw new Error(
+            `找不到 Cursor CLI「${cfg.cursorBin}」。请先安装: curl https://cursor.com/install -fsS | bash\n` +
+              `安装后确认 which agent，或在 .env 设置 CURSOR_BIN=/完整路径/agent`,
+          )
         }
         const detail = [e.stderr, e.stdout, e.message].filter(Boolean).join("\n")
         throw new Error(`Cursor 执行失败: ${detail.slice(0, 800)}`)
