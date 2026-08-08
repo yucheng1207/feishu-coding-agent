@@ -1,0 +1,24 @@
+src/engines/cursor.ts
+  s_249b34b1d8f7cb::t_afc737661da315 91,99-103
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.39-trip",
+  "base_commit_sha": "ff0aab36405ea70abee495248fdf3a440d1e3e54",
+  "prompts": {},
+  "humans": {
+    "h_2ceb23ea745330": {
+      "author": "ychengzhang <ychengzhang@trip.com>"
+    }
+  },
+  "sessions": {
+    "s_249b34b1d8f7cb": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "cf5f4569-a6d9-4996-86b1-912ebecd1fb8",
+        "model": "default"
+      },
+      "human_author": "ychengzhang <ychengzhang@trip.com>"
+    }
+  }
+}
