@@ -1,0 +1,121 @@
+src/router/handle-message.ts
+  s_fa7e3d282fad21::t_1e887eeacbafdc 82,85-87
+  s_fa7e3d282fad21::t_f11ccd652a0080 118
+  s_fa7e3d282fad21::t_def6641d73d84a 77,79-81
+  s_fa7e3d282fad21::t_8957cd65c2a71f 196-202
+  s_fa7e3d282fad21::t_0f03c43e7de1db 78,83-84
+  s_fa7e3d282fad21::t_65a4cc7c1a551b 40,54,56-58,62
+  s_fa7e3d282fad21::t_9fb9d5cfa880bf 158
+  s_fa7e3d282fad21::t_8e458811f58556 14,141-145,232
+  s_fa7e3d282fad21::t_8fe7362e71cd05 10,16,38,116-117,119-137,168,171-182,185-195,203,206-211,213-214,221,249-279,294
+  s_fa7e3d282fad21::t_1c9a8c30384311 11,73,76,106,109-115,245-246
+  s_fa7e3d282fad21::t_9bb6ff871e3763 1-6,26-36,39,41-42,44-53,55,59-61,63-71,91,183,212,299-300
+  s_fa7e3d282fad21::t_1cb156e2b67c35 15,166-167,184,204-205,215,222,233-244,282-293,295
+src/util/run-registry.ts
+  s_fa7e3d282fad21::t_0e43e383b69591 1-7,9-10,14,18-31,36-41,43-48,52-53,57-60
+  s_fa7e3d282fad21::t_662f8a8fbcc655 8,11-13,15-17,32-35,54-56,61-63
+  s_fa7e3d282fad21::t_7af1df4703407a 42,49-51
+README.md
+  s_fa7e3d282fad21::t_80c9d5d453d272 61
+  s_fa7e3d282fad21::t_428af99f6fca81 66,70-71
+AGENTS.md
+  s_fa7e3d282fad21::t_f1eeaa77d14429 25
+  s_fa7e3d282fad21::t_f193dbed3d27e2 24,26-31
+src/engines/types.ts
+  s_fa7e3d282fad21::t_7cd77b0e51fea0 2-4,11-12
+  s_fa7e3d282fad21::t_bdfe2a4a564348 13-14
+src/engines/stream/cursor-adapter.ts
+  s_fa7e3d282fad21::t_5389ad0aa14ae0 1-140
+src/router/commands.ts
+  s_fa7e3d282fad21::t_84b9a056b43d9c 19,36,45
+  s_fa7e3d282fad21::t_21ff8c358a332d 21
+  s_fa7e3d282fad21::t_7b42c8f4603947 154-169
+  s_fa7e3d282fad21::t_839241124be51a 64
+  s_fa7e3d282fad21::t_03d6787c61812f 87
+src/engines/kiro.ts
+  s_fa7e3d282fad21::t_27782408e990a1 238-240
+  s_fa7e3d282fad21::t_50d2876cbd909d 6-10,73-125,127-137,147-162,164-175,216-224,226-229,231-237,241-252,254-260,262,264
+  s_fa7e3d282fad21::t_0ae63aea54e0eb 4,11
+  s_fa7e3d282fad21::t_f600075ed85196 126,138-146
+  s_fa7e3d282fad21::t_dfbcf5b5f5a8f3 177-196,198-214
+src/engines/stream/kiro-adapter.ts
+  s_fa7e3d282fad21::t_ab15f3390d7d2d 1-154
+src/index.ts
+  s_fa7e3d282fad21::t_f65cc9fe7354f4 144
+  s_fa7e3d282fad21::t_2aec20bcfc83fc 75
+  s_fa7e3d282fad21::t_ab43a1e0338a9c 44
+  s_fa7e3d282fad21::t_4c9110a7022b45 6-11
+  s_fa7e3d282fad21::t_5c862add146c15 106,113-123
+.env.example
+  s_fa7e3d282fad21::t_572edd761c920f 37-45
+src/engines/cursor.ts
+  s_fa7e3d282fad21::t_25e795814cd147 201-231
+  s_fa7e3d282fad21::t_41e345a462a429 4,11
+  s_fa7e3d282fad21::t_ca79d77b86eebb 162,174-179
+  s_fa7e3d282fad21::t_8a2030fe8f859b 247-249
+  s_fa7e3d282fad21::t_9e0de326936df9 282-284
+  s_fa7e3d282fad21::t_0802e2c6c1746b 6-10,123-161,163-173,180-200,232-246,250-272,287-288,290-292
+  s_fa7e3d282fad21::t_ba100cc98878e0 1,15-17,30-33,35-106
+src/session/store.ts
+  s_fa7e3d282fad21::t_c572717a9e735e 10-14
+  s_fa7e3d282fad21::t_4a8960797ee7a9 20,22-26,40-43,75-87,91-99,101-107,110
+  s_fa7e3d282fad21::t_e699f6a95e00a0 60
+src/session/key.ts
+  s_fa7e3d282fad21::t_db55112876c50b 31,33-35,43-48,51
+  s_fa7e3d282fad21::t_3b199099404838 49-50
+  s_fa7e3d282fad21::t_cdaeb797c74f80 2,7-8,10-13,17-24,28-30,36-42,52
+  s_fa7e3d282fad21::t_92c8a2844baa49 32,53-58
+src/engines/stream/progress-events.ts
+  s_fa7e3d282fad21::t_3d10201c47a51a 1-38
+src/config.ts
+  s_fa7e3d282fad21::t_ade93caa3f9e61 58-65
+  s_fa7e3d282fad21::t_39b56892f3582c 107-112
+src/util/feishu-progress.ts
+  s_fa7e3d282fad21::t_14513470cb2724 120,122-124,126-135,138-143
+  s_fa7e3d282fad21::t_278e6e926de4cf 26-33,45-47,98,111,125,136-137,222-254,256-258
+  s_fa7e3d282fad21::t_1ea7f15c4f2141 214
+  s_fa7e3d282fad21::t_37e513d2afb2ba 61
+  s_fa7e3d282fad21::t_92a68f18684f62 44
+  s_fa7e3d282fad21::t_e55cbb6606996e 163
+  s_fa7e3d282fad21::t_503d4e284e5a5e 177,207-208,216-219,255
+  s_fa7e3d282fad21::t_9f4d1f0cd26ad0 121
+  s_fa7e3d282fad21::t_05dbdd2f1ee344 1-25,34-43,48-60,62-97,99-110,112-119,144-162,164-176,178-206,209-213,215,220-221,259-271
+src/engines/stream/spawn-lines.ts
+  s_fa7e3d282fad21::t_08ffb24194a329 1,33-53,56-71,76,81,84-87,90,98,122,164,181
+  s_fa7e3d282fad21::t_996d83fcd1c07a 2-9,11-14,26-28,72-73,93-95,97,99-100,102,111,113-114,116-119,121,123,128-143,145,200-203,214-216
+  s_fa7e3d282fad21::t_4aed18dc07af05 10,15-25,29-32,54-55,74-75,77-80,82-83,88-89,91-92,96,101,103-110,112,115,120,124-127,144,146-163,165-180,182-199,204-213
+src/util/feishu-reply.ts
+  s_fa7e3d282fad21::t_f1abd61c839894 14
+  s_fa7e3d282fad21::t_38eecd62e58bfe 48
+  s_fa7e3d282fad21::t_bdd39f7e58d6ab 115
+  s_fa7e3d282fad21::t_f5dacb44e94808 86
+  s_fa7e3d282fad21::t_38688a88bc2f05 17-30,32,52-56,58-61,67-71,73,76-80,99-105,107,109-113
+  s_fa7e3d282fad21::t_3b4bcc89f2b79c 83
+  s_fa7e3d282fad21::t_3f004c348ab5a4 1-13,15-16,31,33-40,42-47,49-51,57,62-66,72,74-75,81-82,84-85,87-98,106,108,114,116-118
+  s_fa7e3d282fad21::t_46024fb9f2acd8 41
+package.json
+  s_fa7e3d282fad21::t_7433c207e5629a 16
+src/engines/agent-cancelled.ts
+  s_fa7e3d282fad21::t_a3a52aeeb41d33 1-14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.44-trip",
+  "base_commit_sha": "6697dfa918cfe71c831f23f5c18d7748da3e0089",
+  "prompts": {},
+  "humans": {
+    "h_2ceb23ea745330": {
+      "author": "ychengzhang <ychengzhang@trip.com>"
+    }
+  },
+  "sessions": {
+    "s_fa7e3d282fad21": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "e037da12-83f3-4c80-8352-c7337d6ff074",
+        "model": "default"
+      },
+      "human_author": "ychengzhang <ychengzhang@trip.com>"
+    }
+  }
+}
