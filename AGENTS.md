@@ -21,11 +21,14 @@
 
 1. **一飞书话题（或单聊）+ 一引擎 = 一 session**；续聊走引擎官方 resume，**禁止**宿主自拼大段历史当上下文。
 2. **跨引擎**（`/cursor` ↔ `/kiro`）必须新开 session，并提示上下文不迁移。
-3. `sessionKey`：`p2p:${chatId}` 或 `topic:${rootId || messageId}`（见 `src/session/key.ts`）。
-4. `DEFAULT_CWD` 只是默认工作区；运行时用 `/cwd` 切换（会清空该话题 sessionId）。
-5. Cursor 对齐 IDE：**Agent + Auto**（`CURSOR_MODEL=auto`，勿默认 `--mode ask`）。
-6. Kiro 对齐 IDE：**Claude Opus 5 + High**（`KIRO_MODEL` / `KIRO_EFFORT`）；可写时 `--trust-all-tools` 接近 Autopilot。
-7. 默认安全：`DEFAULT_WRITE_MODE=false`，写文件靠 `/write on`。
+3. `sessionKey`：`p2p:${chatId}` 或 `topic:${rootId || messageId}`；群聊用 `messageAliases` 把 bot 消息拉回原话题（见 `src/session/key.ts`）。
+4. **群话题**：首次需 `@` 认领；已绑定话题内未 `@` 也可续聊（可用 `/at-only on` 改为仅 `@` 才回）；`@` 了别人但未 `@` 本机器人则忽略；**其他机器人/应用的消息**（未 `@` 本机器人）一律忽略。群回复优先进话题（失败不回退主聊天）；**最终结果用 interactive 卡片**（`buildMarkdownCard`），处理中可用短 text。
+5. **单聊**：始终同一 binding，除非 `/new` `/resume` 换引擎 `/cwd` 等主动切换。
+6. `DEFAULT_CWD` 只是默认工作区；运行时用 `/cwd` 切换（会清空该话题 sessionId）。
+7. Cursor 对齐 IDE：**Agent + Auto**（`CURSOR_MODEL=auto`，勿默认 `--mode ask`）。
+8. Kiro 对齐 IDE：**Claude Opus 5 + High**（`KIRO_MODEL` / `KIRO_EFFORT`）；可写时 `--trust-all-tools` 接近 Autopilot。
+9. 默认安全：`DEFAULT_WRITE_MODE=false`，写文件靠 `/write on`。
+10. 本地开发可依赖 `file:../feishu-agent-bridge`；改 bridge 后对其 `npm run build` 再重启本仓。
 
 ## 目录速查
 

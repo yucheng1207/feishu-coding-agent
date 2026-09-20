@@ -55,6 +55,14 @@ export interface AppConfig {
   cursorBin: string
   kiroBin: string
   kiroTrustTools: string
+  /** Kiro stream-json 使用的 agent engine（v1 不支持 stream-json） */
+  kiroAgentEngine: string
+  /** 飞书进度卡片 */
+  progressEnabled: boolean
+  progressUpdateMs: number
+  progressHeartbeatMs: number
+  progressTextPreview: boolean
+  progressTextPreviewChars: number
 }
 
 export function loadConfig(): AppConfig {
@@ -96,6 +104,12 @@ export function loadConfig(): AppConfig {
     kiroBin: process.env.KIRO_BIN || "kiro-cli",
     kiroTrustTools:
       process.env.KIRO_TRUST_TOOLS || "fs_read,fs_write,execute_bash,grep",
+    kiroAgentEngine: (process.env.KIRO_AGENT_ENGINE || "v2").trim(),
+    progressEnabled: envBool("PROGRESS_ENABLED", true),
+    progressUpdateMs: Number(process.env.PROGRESS_UPDATE_MS || 2000),
+    progressHeartbeatMs: Number(process.env.PROGRESS_HEARTBEAT_MS || 30_000),
+    progressTextPreview: envBool("PROGRESS_TEXT_PREVIEW", true),
+    progressTextPreviewChars: Number(process.env.PROGRESS_TEXT_PREVIEW_CHARS || 500),
   }
 }
 

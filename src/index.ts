@@ -3,7 +3,12 @@
  * 飞书 ↔ 本机 Cursor / Kiro 多引擎宿主（依赖 feishu-agent-bridge）
  */
 import express from "express"
-import { createFeishuService, type FeishuService } from "feishu-agent-bridge"
+import {
+  createFeishuService,
+  parseCardActionPayload,
+  type CardActionResponse,
+  type FeishuService,
+} from "feishu-agent-bridge"
 import { assertRuntimeConfig, loadConfig } from "./config.js"
 import { createEngines } from "./engines/index.js"
 import { createMessageHandler } from "./router/handle-message.js"
@@ -36,7 +41,7 @@ const engines = createEngines(cfg)
 
 let feishuService: FeishuService | null = null
 
-const handleMessage = createMessageHandler({
+const { handleMessage, handleCardAction } = createMessageHandler({
   cfg,
   store,
   engines,
@@ -67,6 +72,7 @@ async function main(): Promise<void> {
         transport: cfg.transport,
         onMessage: handleMessage,
         onBotAdded: handleBotAdded,
+        onCardAction: handleCardAction,
       })
       console.log(`📡 Feishu ready (${feishuService.transport})`)
     } catch (err) {
@@ -97,13 +103,24 @@ async function main(): Promise<void> {
       return res.status(400).json({ code: -1, msg: "missing challenge" })
     })
 
-    app.post(cfg.webhookPath, (req, res) => {
+    app.post(cfg.webhookPath, async (req, res) => {
       const payload = req.body || {}
       if (payload.type === "url_verification" && payload.challenge) {
         return res.json({ challenge: payload.challenge })
       }
 
       const eventType = payload.header?.event_type
+      if (eventType === "card.action.trigger") {
+        const action = parseCardActionPayload(payload)
+        if (action) {
+          const result: CardActionResponse = await handleCardAction(action)
+          return res.json(result)
+        }
+        return res.json({
+          toast: { type: "error", content: "无法识别卡片操作" },
+        })
+      }
+
       const message = payload.event?.message
       const chatId = message?.chat_id || payload.event?.chat_id
       if (message?.message_type === "text" && chatId) {
@@ -124,6 +141,7 @@ async function main(): Promise<void> {
                 sender?.sender_id?.user_id ||
                 "",
               rootId: message.root_id,
+              parentId: message.parent_id,
               createTime: message.create_time,
               shouldReply: true,
             })

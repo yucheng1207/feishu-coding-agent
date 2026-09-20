@@ -58,16 +58,17 @@ npm run build && npm start
 | `/cwd <path>` | 工作目录（会清空 session） |
 | `/new` | 当前引擎新会话 |
 | `/write on\|off` | 是否允许改文件（默认 off） |
+| `/at-only on\|off` | 当前话题仅 @ 本机器人才回复（默认 off） |
 | `/resume <id>` | 绑定已有引擎 session |
 | `/status` | 当前绑定 |
 | 普通消息 | 在当前绑定上 **resume 续聊** |
 
-群聊需 @机器人（由 bridge 的 `shouldReply` 控制）。
+群聊：**首次进入话题需 @机器人**；该话题已绑定后，后续消息可不 @ 续聊。
 
 ## 会话规则
 
-- **单聊**：整个会话一个 binding
-- **群话题**：`root_id || message_id` 作为 key，同一话题多轮续聊
+- **单聊**：整个会话一个 binding（主动 `/new` `/resume` 等才换）
+- **群话题**：`root_id || message_id` 作为 key；机器人回复进话题，并用消息别名防止 root 漂到 bot 消息上
 - 持久化：`~/.config/feishu-coding-agent/sessions.json`
 - **同一引擎 resume** ≈ 本机对该产品同一会话的 token/效果
 - **跨引擎切换** ≠ 同一上下文；会新开会话并提示

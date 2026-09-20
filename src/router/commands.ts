@@ -16,7 +16,9 @@ function helpText(): string {
     "/cwd <path> — 设置工作目录",
     "/new — 当前引擎新开会话",
     "/write on|off — 是否允许改文件（默认 off）",
+    "/at-only on|off — 当前话题仅 @ 本机器人才回复（默认 off）",
     "/resume <sessionId> — 挂到已有引擎会话",
+    "/stop — 中断当前 Agent（保留 session；或点进度卡片「停止」按钮）",
     "/status — 查看当前绑定",
     "/help — 帮助",
     "",
@@ -31,6 +33,7 @@ function formatStatus(key: string, b: SessionBinding | undefined, cfg: AppConfig
       `engine: ${cfg.defaultEngine}（尚未绑定，首条消息时创建）`,
       `cwd: ${cfg.defaultCwd}`,
       `writeMode: ${cfg.defaultWriteMode}`,
+      `requireAt: false`,
       `sessionId: （空）`,
     ].join("\n")
   }
@@ -39,6 +42,7 @@ function formatStatus(key: string, b: SessionBinding | undefined, cfg: AppConfig
     `engine: ${b.engine}`,
     `cwd: ${b.cwd}`,
     `writeMode: ${b.writeMode}`,
+    `requireAt: ${Boolean(b.requireAt)}`,
     `sessionId: ${b.sessionId || "（空，下一条将新建）"}`,
     `updatedAt: ${b.updatedAt}`,
   ].join("\n")
@@ -57,6 +61,7 @@ function ensureBinding(
     sessionId: "",
     cwd: cfg.defaultCwd,
     writeMode: cfg.defaultWriteMode,
+    requireAt: false,
     createdAt: now,
     updatedAt: now,
   }
@@ -79,6 +84,7 @@ function switchEngine(
     sessionId: "",
     cwd: prev.cwd,
     writeMode: prev.writeMode,
+    requireAt: prev.requireAt,
   })
   const note =
     prev.engine !== engine && prev.sessionId
@@ -142,6 +148,22 @@ export function dispatchCommand(
       return {
         kind: "reply",
         text: `writeMode = ${next.writeMode}\n${formatStatus(sessionKey, next, cfg)}`,
+      }
+    }
+
+    case "/at-only": {
+      ensureBinding(store, sessionKey, cfg)
+      const on = ["on", "1", "true", "yes"].includes(arg.toLowerCase())
+      const off = ["off", "0", "false", "no"].includes(arg.toLowerCase())
+      if (!on && !off) {
+        return { kind: "reply", text: "用法: /at-only on 或 /at-only off" }
+      }
+      const next = store.update(sessionKey, { requireAt: on })
+      return {
+        kind: "reply",
+        text: on
+          ? `requireAt = true（本话题仅 @ 本机器人才回复）\n关闭请发：@机器人 /at-only off\n${formatStatus(sessionKey, next, cfg)}`
+          : `requireAt = false（已绑定话题可无 @ 续聊）\n${formatStatus(sessionKey, next, cfg)}`,
       }
     }
 
